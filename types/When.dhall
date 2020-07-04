@@ -1,1 +1,1 @@
-< Manual | Always | Never >
+< Always | OnSuccess | OnFailure >

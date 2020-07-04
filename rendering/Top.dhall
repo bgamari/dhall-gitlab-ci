@@ -7,11 +7,11 @@ let GitSubmoduleStrategy/toJSON = ./GitSubmoduleStrategy.dhall
 in
 
 let Top/toJSON
-        : types.Top -> JSON.Type
-        = \ (top : types.Top) ->
+        : types.Top.Type -> JSON.Type
+        = \ (top : types.Top.Type) ->
         let jobs
                 : Map.Type Text JSON.Type
-                = Prelude.Map.map Text types.Job JSON.Type Job/toJSON top.jobs
+                = Prelude.Map.map Text types.Job.Type JSON.Type Job/toJSON top.jobs
         let others
                 : Map.Type Text JSON.Type
                 = toMap

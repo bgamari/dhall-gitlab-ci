@@ -9,8 +9,8 @@ let ArtifactsSpec/toJSON = ./ArtifactsSpec.dhall
 in
 
 let Job/toJSON
-        : types.Job -> JSON.Type
-        = \ (job : types.Job) ->
+        : types.Job.Type -> JSON.Type
+        = \ (job : types.Job.Type) ->
         let stringsArray
                 : List Text -> JSON.Type
                 = \ (xs : List Text) -> JSON.array (Prelude.List.map Text JSON.Type JSON.string xs)
@@ -18,7 +18,7 @@ let Job/toJSON
         let everything
                 : Map.Type Text (Optional JSON.Type)
                 = toMap
-                { stage = Some (JSON.string job.stage)
+                { stage = Optional/map Text JSON.Type JSON.string job.stage
                 , image = Optional/map Text JSON.Type JSON.string job.image
                 , variables = Some (JSON.object (Map.map Text Text JSON.Type JSON.string job.variables))
                 , rules = Optional/map (List types.Rule) JSON.Type (\(rules : List types.Rule) -> JSON.null) job.rules
@@ -32,7 +32,7 @@ let Job/toJSON
                 , script = Some (stringsArray job.script)
                 , after_script = Optional/map types.Script JSON.Type stringsArray job.after_script
                 , cache = Optional/map types.CacheSpec JSON.Type CacheSpec/toJSON job.cache
-                , artifacts = Optional/map types.ArtifactsSpec JSON.Type ArtifactsSpec/toJSON job.artifacts
+                , artifacts = Optional/map types.ArtifactsSpec.Type JSON.Type ArtifactsSpec/toJSON job.artifacts
                 }
         in JSON.object (dropNones Text JSON.Type everything)
 

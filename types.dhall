@@ -7,4 +7,5 @@
 , When = ./types/When.dhall
 , Top = ./types/Top.dhall
 , GitSubmoduleStrategy = ./types/GitSubmoduleStrategy.dhall
+, Duration = ./types/Duration.dhall
 }

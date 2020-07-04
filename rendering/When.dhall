@@ -6,8 +6,9 @@ let When/toJSON
         : types.When -> JSON.Type
         = \ (when : types.When) -> JSON.string (merge
         { Always = "always"
-        , Manual = "manual"
-        , Never = "never"
+        , OnSuccess = "on_success"
+        , OnFailure = "on_failure"
         }
         when)
+
 in When/toJSON
