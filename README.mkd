@@ -1,0 +1,4 @@
+# `dhall-gitlab-ci`: A Dhall representation of `gitlab-ci.yml`
+
+This is a Dhall encoding of the GitLab CI configuration
+[schema](https://docs.gitlab.com/ee/ci/yaml/README.html).
