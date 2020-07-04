@@ -1,5 +1,7 @@
 let Prelude = ../Prelude.dhall
+
 let JSON = Prelude.JSON
+
 let types = ../types.dhall
 
 let Duration = types.Duration.Type
@@ -13,13 +15,11 @@ let scales
       ]
 
 let formatDur
-        : Duration -> Text
-        = \ (dur : Duration) ->
-          "${Natural/show dur.seconds} second"
+    : Duration → Text
+    = λ(dur : Duration) → "${Natural/show dur.seconds} second"
 
-let Duration/toJSON 
-        : Duration -> JSON.Type
-        = \ (dur : Duration) -> JSON.string (formatDur dur)
+let Duration/toJSON
+    : Duration → JSON.Type
+    = λ(dur : Duration) → JSON.string (formatDur dur)
 
-in Duration/toJSON
-
+in  Duration/toJSON

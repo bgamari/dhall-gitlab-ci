@@ -1,3 +1,1 @@
-< Recursive
-| Normal
->
+< Recursive | Normal >

@@ -1,3 +1,1 @@
-{ key : Text
-, paths : List Text
-}
+{ key : Text, paths : List Text }
