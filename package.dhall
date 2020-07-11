@@ -1,1 +1,1 @@
-./GitLab/package.dhall
+./GitLab/package.dhall ∧ { Prelude = ./Prelude.dhall }
