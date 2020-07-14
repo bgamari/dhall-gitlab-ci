@@ -1,1 +1,1 @@
-let RulePredicate = ../RulePredicate/Type in { `if` : RulePredicate }
+let RulePredicate = ../RulePredicate/Type.dhall in { `if` : RulePredicate }

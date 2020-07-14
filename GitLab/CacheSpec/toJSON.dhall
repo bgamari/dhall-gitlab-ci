@@ -1,10 +1,10 @@
-let Prelude = ../Prelude
+let Prelude = ../Prelude.dhall
 
 let Map = Prelude.Map
 
 let JSON = Prelude.JSON
 
-let CacheSpec = ./Type
+let CacheSpec = ./Type.dhall
 
 let dropNones = ../utils/dropNones.dhall
 

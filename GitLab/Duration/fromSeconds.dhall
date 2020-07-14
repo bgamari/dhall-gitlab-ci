@@ -1,5 +1,5 @@
 let fromSeconds
-    : Natural → ./Type
+    : Natural → ./Type.dhall
     = λ(n : Natural) → { seconds = n }
 
 in  fromSeconds

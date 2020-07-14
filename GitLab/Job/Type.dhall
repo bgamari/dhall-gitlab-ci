@@ -1,12 +1,12 @@
-let Prelude = ../Prelude
+let Prelude = ../Prelude.dhall
 
-let Script = ../Script/Type
+let Script = ../Script/Type.dhall
 
-let ArtifactsSpec = ../ArtifactsSpec/Type
+let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
 
-let CacheSpec = ../CacheSpec/Type
+let CacheSpec = ../CacheSpec/Type.dhall
 
-let Rule = ../Rule/Type
+let Rule = ../Rule/Type.dhall
 
 in  { stage : Optional Text
     , image : Optional Text

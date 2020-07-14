@@ -1,9 +1,11 @@
-let Prelude = ./Prelude
+let Prelude = ../Prelude.dhall
+
+let Duration = ./Type.dhall
 
 let greaterThan
-    : ./Type → ./Type → Bool
-    = λ(x : ./Type) →
-      λ(y : ./Type) →
+    : Duration → Duration → Bool
+    = λ(x : Duration) →
+      λ(y : Duration) →
         Prelude.Natural.greaterThan x.seconds y.seconds
 
 in  greaterThan

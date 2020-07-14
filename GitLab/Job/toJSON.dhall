@@ -1,26 +1,26 @@
-let Prelude = ../Prelude
+let Prelude = ../Prelude.dhall
 
 let Map = Prelude.Map
 
 let JSON = Prelude.JSON
 
-let Job = ./Type
+let Job = ./Type.dhall
 
-let ArtifactsSpec = ../ArtifactsSpec/Type
+let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
 
-let CacheSpec = ../CacheSpec/Type
+let CacheSpec = ../CacheSpec/Type.dhall
 
-let Rule = ../Rule/Type
+let Rule = ../Rule/Type.dhall
 
-let Script = ../Script/Type
+let Script = ../Script/Type.dhall
 
 let dropNones = ../utils/dropNones.dhall
 
 let Optional/map = Prelude.Optional.map
 
-let CacheSpec/toJSON = ../CacheSpec/toJSON
+let CacheSpec/toJSON = ../CacheSpec/toJSON.dhall
 
-let ArtifactsSpec/toJSON = ../ArtifactsSpec/toJSON
+let ArtifactsSpec/toJSON = ../ArtifactsSpec/toJSON.dhall
 
 in  let Job/toJSON
         : Job → JSON.Type

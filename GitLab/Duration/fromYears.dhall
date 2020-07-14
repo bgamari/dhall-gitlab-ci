@@ -1,5 +1,5 @@
 let fromYears
-    : Natural → ./Type
-    = λ(n : Natural) → ./fromDays (365 * n)
+    : Natural → ./Type.dhall
+    = λ(n : Natural) → ./fromDays.dhall (365 * n)
 
 in  fromYears

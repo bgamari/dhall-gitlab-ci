@@ -1,8 +1,8 @@
-let When = ../When/Type
+let When = ../When/Type.dhall
 
 in    { when = When.OnSuccess
-      , expire_in = ../Duration/fromDays 30
+      , expire_in = ../Duration/fromDays.dhall 30
       , reports.junit = None Text
       , paths = [] : List Text
       }
-    : ./Type
+    : ./Type.dhall

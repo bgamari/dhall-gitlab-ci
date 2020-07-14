@@ -1,18 +1,18 @@
-let Prelude = ../Prelude
+let Prelude = ../Prelude.dhall
 
 let Map = Prelude.Map
 
 let JSON = Prelude.JSON
 
-let ArtifactsSpec = ../ArtifactsSpec/Type
+let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
 
 let Optional/map = Prelude.Optional.map
 
 let dropNones = ../utils/dropNones.dhall
 
-let When/toJSON = ../When/toJSON
+let When/toJSON = ../When/toJSON.dhall
 
-let Duration/toJSON = ../Duration/toJSON
+let Duration/toJSON = ../Duration/toJSON.dhall
 
 let List/map = Prelude.List.map
 

@@ -1,4 +1,4 @@
-let Prelude = ../Prelude
+let Prelude = ../Prelude.dhall
 
 let Map = Prelude.Map
 

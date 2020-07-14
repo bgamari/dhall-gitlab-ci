@@ -1,15 +1,15 @@
-let Prelude = ../Prelude
+let Prelude = ../Prelude.dhall
 
 let JSON = Prelude.JSON
 
-let Duration = ./Type
+let Duration = ./Type.dhall
 
 let scales
     : List { name : Text, dur : Duration }
-    = [ { name = "week", dur = ./fromWeeks 1 }
-      , { name = "day", dur = ./fromDays 1 }
-      , { name = "hour", dur = ./fromHours 1 }
-      , { name = "minutes", dur = ./fromMinutes 1 }
+    = [ { name = "week", dur = ./fromWeeks.dhall 1 }
+      , { name = "day", dur = ./fromDays.dhall 1 }
+      , { name = "hour", dur = ./fromHours.dhall 1 }
+      , { name = "minutes", dur = ./fromMinutes.dhall 1 }
       ]
 
 let formatDur

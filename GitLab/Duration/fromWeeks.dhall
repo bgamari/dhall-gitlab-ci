@@ -1,5 +1,5 @@
 let fromWeeks
-    : Natural → ./Type
-    = λ(n : Natural) → ./fromDays (7 * n)
+    : Natural → ./Type.dhall
+    = λ(n : Natural) → ./fromDays.dhall (7 * n)
 
 in  fromWeeks

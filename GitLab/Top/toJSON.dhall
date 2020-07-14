@@ -1,16 +1,16 @@
-let Prelude = ../Prelude
+let Prelude = ../Prelude.dhall
 
 let JSON = Prelude.JSON
 
 let Map = Prelude.Map
 
-let Top = ./Type
+let Top = ./Type.dhall
 
-let Job = ../Job/Type
+let Job = ../Job/Type.dhall
 
-let Job/toJSON = ../Job/toJSON
+let Job/toJSON = ../Job/toJSON.dhall
 
-let GitSubmoduleStrategy/toJSON = ../GitSubmoduleStrategy/toJSON
+let GitSubmoduleStrategy/toJSON = ../GitSubmoduleStrategy/toJSON.dhall
 
 let dropNones = ../utils/dropNones.dhall
 

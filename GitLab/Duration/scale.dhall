@@ -1,5 +1,7 @@
+let Duration = ./Type.dhall
+
 let scale
-    : Natural → ./Type → ./Type
-    = λ(n : Natural) → λ(d : ./Type) → { seconds = d.seconds * n }
+    : Natural → Duration → Duration
+    = λ(n : Natural) → λ(d : Duration) → { seconds = d.seconds * n }
 
 in  scale

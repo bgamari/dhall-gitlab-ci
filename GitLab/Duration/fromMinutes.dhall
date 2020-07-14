@@ -1,5 +1,5 @@
 let fromMinutes
-    : Natural → ./Type
-    = λ(n : Natural) → ./fromSeconds (60 * n)
+    : Natural → ./Type.dhall
+    = λ(n : Natural) → ./fromSeconds.dhall (60 * n)
 
 in  fromMinutes

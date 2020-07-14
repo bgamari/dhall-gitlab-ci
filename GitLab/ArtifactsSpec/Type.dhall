@@ -1,6 +1,6 @@
-let When = ../When/Type
+let When = ../When/Type.dhall
 
-let Duration = ../Duration/Type
+let Duration = ../Duration/Type.dhall
 
 in  { when : When
     , expire_in : Duration

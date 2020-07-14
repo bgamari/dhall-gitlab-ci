@@ -1,1 +1,1 @@
-{ Type = ./Type }
+{ Type = ./Type.dhall }
