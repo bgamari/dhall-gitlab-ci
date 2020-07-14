@@ -4,19 +4,27 @@ let Map = Prelude.Map
 
 let JSON = Prelude.JSON
 
-let types = ../types.dhall
+let Job = ./Type.dhall
+
+let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
+
+let CacheSpec = ../CacheSpec/Type.dhall
+
+let Rule = ../Rule/Type.dhall
+
+let Script = ../Script/Type.dhall
 
 let dropNones = ../utils/dropNones.dhall
 
 let Optional/map = Prelude.Optional.map
 
-let CacheSpec/toJSON = ./CacheSpec.dhall
+let CacheSpec/toJSON = ../CacheSpec/toJSON.dhall
 
-let ArtifactsSpec/toJSON = ./ArtifactsSpec.dhall
+let ArtifactsSpec/toJSON = ../ArtifactsSpec/toJSON.dhall
 
 in  let Job/toJSON
-        : types.Job.Type → JSON.Type
-        = λ(job : types.Job.Type) →
+        : Job → JSON.Type
+        = λ(job : Job) →
             let stringsArray
                 : List Text → JSON.Type
                 = λ(xs : List Text) →
@@ -39,9 +47,9 @@ in  let Job/toJSON
                         )
                     , rules =
                         Optional/map
-                          (List types.Rule)
+                          (List Rule)
                           JSON.Type
-                          (λ(rules : List types.Rule) → JSON.null)
+                          (λ(rules : List Rule) → JSON.null)
                           job.rules
                     , dependencies =
                         if    Prelude.List.null Text job.dependencies
@@ -52,26 +60,26 @@ in  let Job/toJSON
                     , allow_failure = Some (JSON.bool job.allow_failure)
                     , before_script =
                         Optional/map
-                          types.Script
+                          Script
                           JSON.Type
                           stringsArray
                           job.before_script
                     , script = Some (stringsArray job.script)
                     , after_script =
                         Optional/map
-                          types.Script
+                          Script
                           JSON.Type
                           stringsArray
                           job.after_script
                     , cache =
                         Optional/map
-                          types.CacheSpec
+                          CacheSpec
                           JSON.Type
                           CacheSpec/toJSON
                           job.cache
                     , artifacts =
                         Optional/map
-                          types.ArtifactsSpec.Type
+                          ArtifactsSpec
                           JSON.Type
                           ArtifactsSpec/toJSON
                           job.artifacts

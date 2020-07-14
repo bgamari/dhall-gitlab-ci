@@ -2,11 +2,11 @@ let Prelude = ../Prelude.dhall
 
 let JSON = Prelude.JSON
 
-let types = ../types.dhall
+let When = ./Type.dhall
 
 let When/toJSON
-    : types.When → JSON.Type
-    = λ(when : types.When) →
+    : When → JSON.Type
+    = λ(when : When) →
         JSON.string
           ( merge
               { Always = "always"

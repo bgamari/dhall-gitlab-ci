@@ -4,11 +4,13 @@ let JSON = Prelude.JSON
 
 let Map = Prelude.Map
 
-let types = ../types.dhall
+let Top = ./Type.dhall
 
-let Job/toJSON = ./Job.dhall
+let Job = ../Job/Type.dhall
 
-let GitSubmoduleStrategy/toJSON = ./GitSubmoduleStrategy.dhall
+let Job/toJSON = ../Job/toJSON.dhall
+
+let GitSubmoduleStrategy/toJSON = ../GitSubmoduleStrategy/toJSON.dhall
 
 let dropNones = ../utils/dropNones.dhall
 
@@ -18,11 +20,11 @@ let stringsArray
         JSON.array (Prelude.List.map Text JSON.Type JSON.string xs)
 
 let Top/toJSON
-    : types.Top.Type → JSON.Type
-    = λ(top : types.Top.Type) →
+    : Top → JSON.Type
+    = λ(top : Top) →
         let jobs
             : Map.Type Text JSON.Type
-            = Prelude.Map.map Text types.Job.Type JSON.Type Job/toJSON top.jobs
+            = Prelude.Map.map Text Job JSON.Type Job/toJSON top.jobs
 
         let others
             : Map.Type Text JSON.Type
