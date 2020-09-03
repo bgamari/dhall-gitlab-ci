@@ -55,6 +55,10 @@ in  let Job/toJSON
                         if    Prelude.List.null Text job.dependencies
                         then  None JSON.Type
                         else  Some (stringsArray job.dependencies)
+                    , needs =
+                        if    Prelude.List.null Text job.needs
+                        then  None JSON.Type
+                        else  Some (stringsArray job.needs)
                     , tags =
                         Optional/map (List Text) JSON.Type stringsArray job.tags
                     , allow_failure = Some (JSON.bool job.allow_failure)

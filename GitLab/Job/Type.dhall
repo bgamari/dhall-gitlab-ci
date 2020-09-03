@@ -13,6 +13,7 @@ in  { stage : Optional Text
     , variables : Prelude.Map.Type Text Text
     , rules : Optional (List Rule)
     , dependencies : List Text
+    , needs : List Text
     , allow_failure : Bool
     , tags : Optional (List Text)
     , before_script : Optional Script
