@@ -17,6 +17,7 @@ in  { stage : Optional Text
     , tags : Optional (List Text)
     , before_script : Optional Script
     , script : Script
+    , services : Optional (List Text)
     , after_script : Optional Script
     , cache : Optional CacheSpec
     , artifacts : Optional ArtifactsSpec

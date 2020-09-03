@@ -65,6 +65,12 @@ in  let Job/toJSON
                           stringsArray
                           job.before_script
                     , script = Some (stringsArray job.script)
+                    , services =
+                        Optional/map
+                          (List Text)
+                          JSON.Type
+                          stringsArray
+                          job.services
                     , after_script =
                         Optional/map
                           Script
