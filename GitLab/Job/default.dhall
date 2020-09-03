@@ -13,6 +13,7 @@ in    { stage = None Text
       , variables = Prelude.Map.empty Text Text
       , rules = None (List Rule)
       , dependencies = [] : List Text
+      , needs = [] : List Text
       , allow_failure = False
       , tags = None (List Text)
       , before_script = None Script
