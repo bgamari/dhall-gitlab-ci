@@ -40,13 +40,15 @@ let Top/toJSON
                           JSON.Type
                           stringsArray
                           top.stages
-                    , variables = Some
-                        ( JSON.object
-                            ( toMap
-                                { GIT_SUBMODULE_STRATEGY =
-                                    GitSubmoduleStrategy/toJSON
-                                      top.gitSubmoduleStrategy
-                                }
+                    , variables =
+                        Some (
+                            JSON.object (
+                                Prelude.List.concat ({ mapKey: Text , mapValue: JSON.Type}) [
+                                    toMap {
+                                        GIT_SUBMODULE_STRATEGY = GitSubmoduleStrategy/toJSON top.gitSubmoduleStrategy
+                                    }
+                                ,   Prelude.Map.map Text Text JSON.Type JSON.string top.variables
+                                ]
                             )
                         )
                     }
