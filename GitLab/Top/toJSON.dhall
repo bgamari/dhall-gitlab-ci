@@ -32,7 +32,9 @@ let Top/toJSON
                 Text
                 JSON.Type
                 ( toMap
-                    { stages =
+                    {
+                        image = Prelude.Optional.map (Text) JSON.Type JSON.string top.image
+                    ,   stages =
                         Prelude.Optional.map
                           (List Text)
                           JSON.Type
