@@ -6,6 +6,8 @@ let JSON = Prelude.JSON
 
 let Job = ./Type.dhall
 
+let Image = ../Image/Type.dhall
+
 let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
 
 let CacheSpec = ../CacheSpec/Type.dhall
@@ -17,6 +19,8 @@ let Script = ../Script/Type.dhall
 let dropNones = ../utils/dropNones.dhall
 
 let Optional/map = Prelude.Optional.map
+
+let Image/toJSON = ../Image/toJSON.dhall
 
 let CacheSpec/toJSON = ../CacheSpec/toJSON.dhall
 
@@ -34,7 +38,7 @@ in  let Job/toJSON
                 : Map.Type Text (Optional JSON.Type)
                 = toMap
                     { stage = Optional/map Text JSON.Type JSON.string job.stage
-                    , image = Optional/map Text JSON.Type JSON.string job.image
+                    , image = Optional/map Image JSON.Type Image/toJSON job.image
                     , variables = Some
                         ( JSON.object
                             ( Map.map

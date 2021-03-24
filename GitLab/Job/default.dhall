@@ -1,5 +1,7 @@
 let Prelude = ../Prelude.dhall
 
+let Image = ../Image/Type.dhall
+
 let Script = ../Script/Type.dhall
 
 let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
@@ -9,7 +11,7 @@ let CacheSpec = ../CacheSpec/Type.dhall
 let Rule = ../Rule/Type.dhall
 
 in    { stage = None Text
-      , image = None Text
+      , image = None Image
       , variables = Prelude.Map.empty Text Text
       , rules = None (List Rule)
       , dependencies = [] : List Text

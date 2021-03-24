@@ -1,4 +1,5 @@
 { Job = ./Job/package.dhall
+, Image = ./Image/package.dhall
 , CacheSpec = ./CacheSpec/package.dhall
 , ArtifactsSpec = ./ArtifactsSpec/package.dhall
 , Rule = ./Rule/package.dhall
