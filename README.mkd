@@ -2,3 +2,7 @@
 
 This is a Dhall encoding of the GitLab CI configuration
 [schema](https://docs.gitlab.com/ee/ci/yaml/README.html).
+
+## Single Job Example
+
+See code under the `examples` folder or checkout the [dhall-gitlab-pipeline](https://gitlab.com/mx00s/dhall-gitlab-pipeline/-/tree/master) for a more complete project example.
