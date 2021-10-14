@@ -8,7 +8,11 @@ let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
 
 let CacheSpec = ../CacheSpec/Type.dhall
 
+let Environment = ../Environment/Type.dhall
+
 let Rule = ../Rule/Type.dhall
+
+let Trigger = ../Trigger/Type.dhall
 
 in  { stage : Optional Text
     , image : Optional Image
@@ -25,4 +29,6 @@ in  { stage : Optional Text
     , cache : Optional CacheSpec
     , artifacts : Optional ArtifactsSpec
     , resource_group : Optional Text
+    , environment : Optional Environment
+    , trigger : Optional Trigger
     }

@@ -12,6 +12,9 @@ let When/toJSON
               { Always = "always"
               , OnSuccess = "on_success"
               , OnFailure = "on_failure"
+              , Manual = "manual"
+              , Delayed = "delayed"
+              , Never = "never"
               }
               when
           )

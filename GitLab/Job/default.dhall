@@ -10,6 +10,10 @@ let CacheSpec = ../CacheSpec/Type.dhall
 
 let Rule = ../Rule/Type.dhall
 
+let Environment = ../Environment/Type.dhall
+
+let Trigger = ../Trigger/Type.dhall
+
 in    { stage = None Text
       , image = None Image
       , variables = Prelude.Map.empty Text Text
@@ -25,5 +29,7 @@ in    { stage = None Text
       , cache = None CacheSpec
       , artifacts = None ArtifactsSpec
       , resource_group = None Text
+      , environment = None Environment
+      , trigger = None Trigger
       }
     : ./Type.dhall
