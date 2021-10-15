@@ -16,11 +16,15 @@ let Rule = ../Rule/package.dhall
 
 let Script = ../Script/package.dhall
 
+let Service = ../Service/package.dhall
+
 let Environment = ../Environment/package.dhall
 
 let Trigger = ../Trigger/package.dhall
 
 let dropNones = ../utils/dropNones.dhall
+
+let optionalList = ../utils/optionalList.dhall
 
 let stringsArrayJSON = ../utils/stringsArrayJSON.dhall
 
@@ -48,21 +52,16 @@ in  let Job/toJSON
                             )
                         )
                     , rules =
-                        let rulesList =
-                              merge
-                                { Some = λ(rules : List Rule) → rules
-                                , None = [] : List Rule
-                                }
-                                job.rules
+                        let rulesList = optionalList Rule.Type job.rules
 
-                        in  if    Prelude.List.null Rule rulesList
+                        in  if    Prelude.List.null Rule.Type rulesList
                             then  None JSON.Type
                             else  Some
                                     ( JSON.array
                                         ( Prelude.List.map
-                                            Rule
+                                            Rule.Type
                                             JSON.Type
-                                            Rule/toJSON
+                                            Rule.toJSON
                                             rulesList
                                         )
                                     )
@@ -83,17 +82,26 @@ in  let Job/toJSON
                     , allow_failure = Some (JSON.bool job.allow_failure)
                     , before_script =
                         Optional/map
-                          Script
+                          Script.Type
                           JSON.Type
                           stringsArrayJSON
                           job.before_script
                     , script = Some (stringsArrayJSON job.script)
                     , services =
-                        Optional/map
-                          (List Text)
-                          JSON.Type
-                          stringsArrayJSON
-                          job.services
+                        let servicesList =
+                              optionalList Service.Type job.services
+
+                        in  if    Prelude.List.null Service.Type servicesList
+                            then  None JSON.Type
+                            else  Some
+                                    ( JSON.array
+                                        ( Prelude.List.map
+                                            Service.Type
+                                            JSON.Type
+                                            Service.toJSON
+                                            servicesList
+                                        )
+                                    )
                     , after_script =
                         Optional/map
                           Script.Type
@@ -130,6 +138,8 @@ in  let Job/toJSON
                           JSON.Type
                           Trigger.toJSON
                           job.trigger
+                    , timeout =
+                        Optional/map Text JSON.Type JSON.string job.timeout
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)

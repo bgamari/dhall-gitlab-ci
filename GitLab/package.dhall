@@ -13,4 +13,8 @@
 , Kubernetes = ./Kubernetes/package.dhall
 , Include = ./Include/package.dhall
 , Trigger = ./Trigger/package.dhall
+, TriggerStrategy = ./TriggerStrategy/package.dhall
+, Defaults = ./Defaults/package.dhall
+, Service = ./Service/package.dhall
+, CachePolicy = ./CachePolicy/package.dhall
 }

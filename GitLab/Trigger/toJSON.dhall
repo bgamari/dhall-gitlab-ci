@@ -6,6 +6,8 @@ let JSON = Prelude.JSON
 
 let Trigger = ./Type.dhall
 
+let TriggerStrategy = ../TriggerStrategy/package.dhall
+
 let Include = ../Include/package.dhall
 
 let dropNones = ../utils/dropNones.dhall
@@ -35,16 +37,17 @@ let Trigger/toJSON
                             ( JSON.array
                                 ( Prelude.List.map
                                     Include.Type
-                                    JSON.type
+                                    JSON.Type
                                     Include.toJSON
                                     trigger.include
                                 )
                             )
-                            Prelude.Optional.map
-                            Text
-                            JSON.Type
-                            JSON.string
-                            trigger.project
+                , strategy =
+                    Prelude.Optional.map
+                      TriggerStrategy.Type
+                      JSON.Type
+                      TriggerStrategy.toJSON
+                      trigger.strategy
                 }
 
         in  JSON.object (dropNones Text JSON.Type everything)
