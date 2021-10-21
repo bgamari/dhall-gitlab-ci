@@ -86,7 +86,10 @@ in  let Job/toJSON
                           JSON.Type
                           stringsArrayJSON
                           job.before_script
-                    , script = Some (stringsArrayJSON job.script)
+                    , script =
+                        if    Prelude.List.null Text job.script
+                        then  None JSON.Type
+                        else  Some (stringsArrayJSON job.script)
                     , services =
                         let servicesList =
                               optionalList Service.Type job.services
