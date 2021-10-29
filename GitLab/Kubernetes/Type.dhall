@@ -1,1 +1,1 @@
-let Prelude = ../Prelude.dhall in { namespace : Optional Text }
+{ namespace : Optional Text }
