@@ -10,6 +10,8 @@ let Job = ../Job/package.dhall
 
 let Rule = ../Rule/package.dhall
 
+let Include = ../Include/package.dhall
+
 let Defaults = ../Defaults/package.dhall
 
 let GitSubmoduleStrategy/toJSON = ../GitSubmoduleStrategy/toJSON.dhall
@@ -80,6 +82,18 @@ let Top/toJSON
                           JSON.Type
                           Defaults.toJSON
                           top.default
+                    , include =
+                        if    Prelude.List.null Include.Type top.include
+                        then  None JSON.Type
+                        else  Some
+                                ( JSON.array
+                                    ( Prelude.List.map
+                                        Include.Type
+                                        JSON.Type
+                                        Include.toJSON
+                                        top.include
+                                    )
+                                )
                     }
                 )
 
