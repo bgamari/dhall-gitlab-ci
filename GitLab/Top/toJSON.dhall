@@ -62,20 +62,23 @@ let Top/toJSON
                                         top.variables
                                   )
                               )
-                    , workflow = Some
-                        ( JSON.object
-                            ( toMap
-                                { rules =
-                                    JSON.array
-                                      ( Prelude.List.map
-                                          Rule.Type
-                                          JSON.Type
-                                          Rule.toJSON
-                                          top.workflow
-                                      )
-                                }
-                            )
-                        )
+                    , workflow =
+                        if    Prelude.List.null Rule.Type top.workflow
+                        then  None JSON.Type
+                        else  Some
+                                ( JSON.object
+                                    ( toMap
+                                        { rules =
+                                            JSON.array
+                                              ( Prelude.List.map
+                                                  Rule.Type
+                                                  JSON.Type
+                                                  Rule.toJSON
+                                                  top.workflow
+                                              )
+                                        }
+                                    )
+                                )
                     , default =
                         Prelude.Optional.map
                           Defaults.Type
