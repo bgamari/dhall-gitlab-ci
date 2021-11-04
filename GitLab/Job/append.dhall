@@ -35,7 +35,7 @@ let append
         , rules = mergeOptionalList Rule.Type a.rules b.rules
         , dependencies = a.dependencies # b.dependencies
         , needs = a.needs # b.needs
-        , allow_failure = False
+        , allow_failure = b.allow_failure
         , tags = mergeOptionalList Text a.tags b.tags
         , before_script = mergeOptionalList Text a.before_script b.before_script
         , script = a.script # b.script
