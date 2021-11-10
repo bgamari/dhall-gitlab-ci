@@ -6,9 +6,13 @@ let Map = Prelude.Map
 
 let Top = ./Type.dhall
 
-let Job = ../Job/Type.dhall
+let Job = ../Job/package.dhall
 
-let Job/toJSON = ../Job/toJSON.dhall
+let Rule = ../Rule/package.dhall
+
+let Include = ../Include/package.dhall
+
+let Defaults = ../Defaults/package.dhall
 
 let GitSubmoduleStrategy/toJSON = ../GitSubmoduleStrategy/toJSON.dhall
 
@@ -24,7 +28,7 @@ let Top/toJSON
     = λ(top : Top) →
         let jobs
             : Map.Type Text JSON.Type
-            = Prelude.Map.map Text Job JSON.Type Job/toJSON top.jobs
+            = Prelude.Map.map Text Job.Type JSON.Type Job.toJSON top.jobs
 
         let others
             : Map.Type Text JSON.Type
@@ -38,15 +42,61 @@ let Top/toJSON
                           JSON.Type
                           stringsArray
                           top.stages
-                    , variables = Some
-                        ( JSON.object
-                            ( toMap
+                    , variables =
+                        let submoduleMap
+                            : Map.Type Text JSON.Type
+                            = toMap
                                 { GIT_SUBMODULE_STRATEGY =
                                     GitSubmoduleStrategy/toJSON
                                       top.gitSubmoduleStrategy
                                 }
-                            )
-                        )
+
+                        in  Some
+                              ( JSON.object
+                                  (   submoduleMap
+                                    # Prelude.Map.map
+                                        Text
+                                        Text
+                                        JSON.Type
+                                        JSON.string
+                                        top.variables
+                                  )
+                              )
+                    , workflow =
+                        if    Prelude.List.null Rule.Type top.workflow
+                        then  None JSON.Type
+                        else  Some
+                                ( JSON.object
+                                    ( toMap
+                                        { rules =
+                                            JSON.array
+                                              ( Prelude.List.map
+                                                  Rule.Type
+                                                  JSON.Type
+                                                  Rule.toJSON
+                                                  top.workflow
+                                              )
+                                        }
+                                    )
+                                )
+                    , default =
+                        Prelude.Optional.map
+                          Defaults.Type
+                          JSON.Type
+                          Defaults.toJSON
+                          top.default
+                    , include =
+                        if    Prelude.List.null Include.Type top.include
+                        then  None JSON.Type
+                        else  Some
+                                ( JSON.array
+                                    ( Prelude.List.map
+                                        Include.Type
+                                        JSON.Type
+                                        Include.toJSON
+                                        top.include
+                                    )
+                                )
                     }
                 )
 

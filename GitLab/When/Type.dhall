@@ -1,1 +1,1 @@
-< Always | OnSuccess | OnFailure >
+< Always | OnSuccess | OnFailure | Manual | Delayed | Never >

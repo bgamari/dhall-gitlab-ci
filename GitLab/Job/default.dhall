@@ -4,11 +4,17 @@ let Image = ../Image/Type.dhall
 
 let Script = ../Script/Type.dhall
 
+let Service = ../Service/Type.dhall
+
 let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
 
 let CacheSpec = ../CacheSpec/Type.dhall
 
 let Rule = ../Rule/Type.dhall
+
+let Environment = ../Environment/Type.dhall
+
+let Trigger = ../Trigger/Type.dhall
 
 in    { stage = None Text
       , image = None Image
@@ -20,10 +26,13 @@ in    { stage = None Text
       , tags = None (List Text)
       , before_script = None Script
       , script = [] : Script
-      , services = None (List Text)
+      , services = None (List Service)
       , after_script = None Script
       , cache = None CacheSpec
       , artifacts = None ArtifactsSpec
       , resource_group = None Text
+      , environment = None Environment
+      , trigger = None Trigger
+      , timeout = None Text
       }
     : ./Type.dhall

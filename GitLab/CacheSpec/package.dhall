@@ -1,1 +1,1 @@
-{ Type = ./Type.dhall, toJSON = ./toJSON.dhall }
+{ Type = ./Type.dhall, toJSON = ./toJSON.dhall, append = ./append.dhall }

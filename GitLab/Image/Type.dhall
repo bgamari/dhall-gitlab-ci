@@ -1,5 +1,1 @@
-let Prelude = ../Prelude.dhall
-
-in  { name : Text
-    , entrypoint : Optional (List Text)
-    }
+{ name : Text, entrypoint : Optional (List Text) }
