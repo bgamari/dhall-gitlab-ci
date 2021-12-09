@@ -143,6 +143,12 @@ in  let Job/toJSON
                           job.trigger
                     , timeout =
                         Optional/map Text JSON.Type JSON.string job.timeout
+                    , extends =
+                        Optional/map
+                          (List Text)
+                          JSON.Type
+                          stringsArrayJSON
+                          job.extends
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)
