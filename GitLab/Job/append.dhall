@@ -59,7 +59,7 @@ let append
         , trigger =
             mergeOptional Trigger.Type Trigger.append a.trigger b.trigger
         , timeout = mergeOptionalRight Text a.timeout b.timeout
-        , extends = mergeOptionalList Text a.extends b.extends
+        , extends = a.extends # b.extends
         }
 
 in  append

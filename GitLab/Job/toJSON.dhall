@@ -144,11 +144,17 @@ in  let Job/toJSON
                     , timeout =
                         Optional/map Text JSON.Type JSON.string job.timeout
                     , extends =
-                        Optional/map
-                          (List Text)
-                          JSON.Type
-                          stringsArrayJSON
-                          job.extends
+                        if    Prelude.List.null Text job.extends
+                        then  None JSON.Type
+                        else  Some
+                                ( JSON.array
+                                    ( Prelude.List.map
+                                        Text
+                                        JSON.Type
+                                        JSON.string
+                                        job.extends
+                                    )
+                                )
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)

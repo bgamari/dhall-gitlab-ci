@@ -34,5 +34,5 @@ in  { stage : Optional Text
     , environment : Optional Environment
     , trigger : Optional Trigger
     , timeout : Optional Text
-    , extends : Optional (List Text)
+    , extends : List Text
     }
