@@ -34,5 +34,6 @@ in    { stage = None Text
       , environment = None Environment
       , trigger = None Trigger
       , timeout = None Text
+      , extends = [] : List Text
       }
     : ./Type.dhall
