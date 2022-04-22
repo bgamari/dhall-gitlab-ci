@@ -10,11 +10,13 @@ let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
 
 let CacheSpec = ../CacheSpec/Type.dhall
 
-let Rule = ../Rule/Type.dhall
-
 let Environment = ../Environment/Type.dhall
 
+let Rule = ../Rule/Type.dhall
+
 let Trigger = ../Trigger/Type.dhall
+
+let When = ../When/Type.dhall
 
 in    { stage = None Text
       , image = None Image
@@ -35,5 +37,6 @@ in    { stage = None Text
       , trigger = None Trigger
       , timeout = None Text
       , extends = [] : List Text
+      , when = None When
       }
     : ./Type.dhall

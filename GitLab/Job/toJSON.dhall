@@ -22,6 +22,8 @@ let Environment = ../Environment/package.dhall
 
 let Trigger = ../Trigger/package.dhall
 
+let When = ../When/package.dhall
+
 let dropNones = ../utils/dropNones.dhall
 
 let optionalList = ../utils/optionalList.dhall
@@ -155,6 +157,8 @@ in  let Job/toJSON
                                         job.extends
                                     )
                                 )
+                    , when =
+                        Optional/map When.Type JSON.Type When.toJSON job.when
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)

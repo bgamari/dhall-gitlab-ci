@@ -16,6 +16,8 @@ let Rule = ../Rule/Type.dhall
 
 let Trigger = ../Trigger/Type.dhall
 
+let When = ../When/Type.dhall
+
 in  { stage : Optional Text
     , image : Optional Image
     , variables : Prelude.Map.Type Text Text
@@ -35,4 +37,5 @@ in  { stage : Optional Text
     , trigger : Optional Trigger
     , timeout : Optional Text
     , extends : List Text
+    , when : Optional When
     }
