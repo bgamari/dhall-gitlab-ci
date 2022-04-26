@@ -21,6 +21,8 @@ let Trigger = ../Trigger/package.dhall
 
 let When = ../When/package.dhall
 
+let Parallel = ../Parallel/package.dhall
+
 let mergeOptional = ../utils/mergeOptional.dhall
 
 let mergeOptionalRight = ../utils/mergeOptionalRight.dhall
@@ -63,6 +65,7 @@ let append
         , timeout = mergeOptionalRight Text a.timeout b.timeout
         , extends = a.extends # b.extends
         , when = mergeOptionalRight When.Type a.when b.when
+        , parallel = mergeOptionalRight Parallel.Type a.parallel b.parallel
         }
 
 in  append

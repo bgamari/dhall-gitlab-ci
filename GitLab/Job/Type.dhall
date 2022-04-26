@@ -18,6 +18,8 @@ let Trigger = ../Trigger/Type.dhall
 
 let When = ../When/Type.dhall
 
+let Parallel = ../Parallel/Type.dhall
+
 in  { stage : Optional Text
     , image : Optional Image
     , variables : Prelude.Map.Type Text Text
@@ -38,4 +40,5 @@ in  { stage : Optional Text
     , timeout : Optional Text
     , extends : List Text
     , when : Optional When
+    , parallel : Optional Parallel
     }

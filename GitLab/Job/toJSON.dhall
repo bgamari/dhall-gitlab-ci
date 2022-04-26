@@ -24,6 +24,8 @@ let Trigger = ../Trigger/package.dhall
 
 let When = ../When/package.dhall
 
+let Parallel = ../Parallel/package.dhall
+
 let dropNones = ../utils/dropNones.dhall
 
 let optionalList = ../utils/optionalList.dhall
@@ -159,6 +161,12 @@ in  let Job/toJSON
                                 )
                     , when =
                         Optional/map When.Type JSON.Type When.toJSON job.when
+                    , parallel =
+                        Optional/map
+                          Parallel.Type
+                          JSON.Type
+                          Parallel.toJSON
+                          job.parallel
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)
