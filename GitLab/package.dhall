@@ -3,6 +3,7 @@
 , CacheSpec = ./CacheSpec/package.dhall
 , ArtifactsSpec = ./ArtifactsSpec/package.dhall
 , Parallel = ./Parallel/package.dhall
+, Reports = ./Reports/package.dhall
 , Rule = ./Rule/package.dhall
 , Script = ./Script/package.dhall
 , When = ./When/package.dhall
