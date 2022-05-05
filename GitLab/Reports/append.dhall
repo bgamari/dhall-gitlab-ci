@@ -6,6 +6,8 @@ let append
     : Reports → Reports → Reports
     = λ(a : Reports) →
       λ(b : Reports) →
-        { junit = mergeOptionalList Text a.junit b.junit }
+        { junit = mergeOptionalList Text a.junit b.junit
+        , cobertura = b.cobertura
+        }
 
 in  append

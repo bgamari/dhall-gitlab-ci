@@ -27,6 +27,12 @@ in  let Reports/toJSON
                           JSON.Type
                           stringsArray
                           reports.junit
+                    , cobertura =
+                        Optional/map
+                          Text
+                          JSON.Type
+                          JSON.string
+                          reports.cobertura
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)

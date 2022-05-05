@@ -1,1 +1,1 @@
-{ junit = None (List Text) } : ./Type.dhall
+{ junit = None (List Text), cobertura = None Text } : ./Type.dhall

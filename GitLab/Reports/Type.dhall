@@ -1,1 +1,1 @@
-{ junit : Optional (List Text) }
+{ junit : Optional (List Text), cobertura : Optional Text }
