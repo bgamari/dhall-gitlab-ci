@@ -4,6 +4,8 @@ let Map = Prelude.Map
 
 let JSON = Prelude.JSON
 
+let CoverageReport = ../CoverageReport/package.dhall
+
 let dropNones = ../utils/dropNones.dhall
 
 let Optional/map = Prelude.Optional.map
@@ -27,12 +29,12 @@ in  let Reports/toJSON
                           JSON.Type
                           stringsArray
                           reports.junit
-                    , cobertura =
+                    , coverage_report =
                         Optional/map
-                          Text
+                          CoverageReport.Type
                           JSON.Type
-                          JSON.string
-                          reports.cobertura
+                          CoverageReport.toJSON
+                          reports.coverage_report
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)
