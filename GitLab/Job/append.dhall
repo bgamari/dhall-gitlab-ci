@@ -19,6 +19,8 @@ let Rule = ../Rule/package.dhall
 
 let Trigger = ../Trigger/package.dhall
 
+let Inherit = ../Inherit/package.dhall
+
 let mergeOptional = ../utils/mergeOptional.dhall
 
 let mergeOptionalRight = ../utils/mergeOptionalRight.dhall
@@ -60,6 +62,7 @@ let append
             mergeOptional Trigger.Type Trigger.append a.trigger b.trigger
         , timeout = mergeOptionalRight Text a.timeout b.timeout
         , extends = a.extends # b.extends
+        , inherit = mergeOptionalRight Inherit.Type a.inherit b.inherit
         }
 
 in  append
