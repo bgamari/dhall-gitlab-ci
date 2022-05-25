@@ -10,6 +10,8 @@ let Rule = ../Rule/package.dhall
 
 let dropNones = ../utils/dropNones.dhall
 
+let stringsArrayJSON = ../utils/stringsArrayJSON.dhall
+
 let Include/toJSON
     : Include → JSON.Type
     = λ(include : Include) →
