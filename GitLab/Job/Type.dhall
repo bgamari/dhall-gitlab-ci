@@ -24,7 +24,7 @@ in  { stage : Optional Text
     , image : Optional Image
     , variables : Prelude.Map.Type Text Text
     , rules : Optional (List Rule)
-    , dependencies : List Text
+    , dependencies : Optional (List Text)
     , needs : List Text
     , allow_failure : Bool
     , tags : Optional (List Text)

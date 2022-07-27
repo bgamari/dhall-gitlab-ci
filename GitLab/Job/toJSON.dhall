@@ -70,9 +70,12 @@ in  let Job/toJSON
                                         )
                                     )
                     , dependencies =
-                        if    Prelude.List.null Text job.dependencies
+                        if    Prelude.Optional.null (List Text) job.dependencies
                         then  None JSON.Type
-                        else  Some (stringsArrayJSON job.dependencies)
+                        else  let dependenciesList =
+                                    optionalList Text job.dependencies
+
+                              in  Some (stringsArrayJSON dependenciesList)
                     , needs =
                         if    Prelude.List.null Text job.needs
                         then  None JSON.Type
