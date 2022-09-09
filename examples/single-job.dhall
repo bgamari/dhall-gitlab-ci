@@ -1,5 +1,6 @@
 let GitLab =
-      https://raw.githubusercontent.com/bgamari/dhall-gitlab-ci/master/package.dhall
+        ../package.dhall
+      ? https://raw.githubusercontent.com/bgamari/dhall-gitlab-ci/master/package.dhall
 
 let Prelude = GitLab.Prelude
 
