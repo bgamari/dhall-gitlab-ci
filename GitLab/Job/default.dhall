@@ -20,12 +20,14 @@ let When = ../When/Type.dhall
 
 let Parallel = ../Parallel/Type.dhall
 
+let Needs = ../Needs/Type.dhall
+
 in    { stage = None Text
       , image = None Image
       , variables = Prelude.Map.empty Text Text
       , rules = None (List Rule)
       , dependencies = None (List Text)
-      , needs = [] : List Text
+      , needs = None (List Needs)
       , allow_failure = False
       , tags = None (List Text)
       , before_script = None Script

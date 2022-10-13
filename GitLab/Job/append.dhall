@@ -23,6 +23,8 @@ let When = ../When/package.dhall
 
 let Parallel = ../Parallel/package.dhall
 
+let Needs = ../Needs/package.dhall
+
 let mergeOptional = ../utils/mergeOptional.dhall
 
 let mergeOptionalRight = ../utils/mergeOptionalRight.dhall
@@ -38,7 +40,7 @@ let append
         , variables = a.variables # b.variables
         , rules = mergeOptionalList Rule.Type a.rules b.rules
         , dependencies = mergeOptionalList Text a.dependencies b.dependencies
-        , needs = a.needs # b.needs
+        , needs = mergeOptionalList Needs.Type a.needs b.needs
         , allow_failure = b.allow_failure
         , tags = mergeOptionalList Text a.tags b.tags
         , before_script = mergeOptionalList Text a.before_script b.before_script

@@ -7,6 +7,7 @@
 , Parallel = ./Parallel/package.dhall
 , Reports = ./Reports/package.dhall
 , Rule = ./Rule/package.dhall
+, Needs = ./Needs/package.dhall
 , Script = ./Script/package.dhall
 , When = ./When/package.dhall
 , Top = ./Top/package.dhall

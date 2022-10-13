@@ -26,6 +26,8 @@ let When = ../When/package.dhall
 
 let Parallel = ../Parallel/package.dhall
 
+let Needs = ../Needs/package.dhall
+
 let dropNones = ../utils/dropNones.dhall
 
 let optionalList = ../utils/optionalList.dhall
@@ -77,9 +79,19 @@ in  let Job/toJSON
 
                               in  Some (stringsArrayJSON dependenciesList)
                     , needs =
-                        if    Prelude.List.null Text job.needs
-                        then  None JSON.Type
-                        else  Some (stringsArrayJSON job.needs)
+                        let needsList = optionalList Needs.Type job.needs
+
+                        in  if    Prelude.List.null Needs.Type needsList
+                            then  None JSON.Type
+                            else  Some
+                                    ( JSON.array
+                                        ( Prelude.List.map
+                                            Needs.Type
+                                            JSON.Type
+                                            Needs.toJSON
+                                            needsList
+                                        )
+                                    )
                     , tags =
                         Optional/map
                           (List Text)
