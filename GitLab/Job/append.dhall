@@ -45,6 +45,7 @@ let append
         , tags = mergeOptionalList Text a.tags b.tags
         , before_script = mergeOptionalList Text a.before_script b.before_script
         , script = a.script # b.script
+        , coverage = mergeOptionalRight Text a.coverage b.coverage
         , services = mergeOptionalList Service.Type a.services b.services
         , after_script = mergeOptionalList Text a.after_script b.after_script
         , cache = mergeOptional CacheSpec.Type CacheSpec.append a.cache b.cache

@@ -109,6 +109,8 @@ in  let Job/toJSON
                         if    Prelude.List.null Text job.script
                         then  None JSON.Type
                         else  Some (stringsArrayJSON job.script)
+                    , coverage =
+                        Optional/map Text JSON.Type JSON.string job.coverage
                     , services =
                         let servicesList =
                               optionalList Service.Type job.services

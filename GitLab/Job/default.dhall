@@ -32,6 +32,7 @@ in    { stage = None Text
       , tags = None (List Text)
       , before_script = None Script
       , script = [] : Script
+      , coverage = None Text
       , services = None (List Service)
       , after_script = None Script
       , cache = None CacheSpec

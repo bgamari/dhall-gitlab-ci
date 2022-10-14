@@ -32,6 +32,7 @@ in  { stage : Optional Text
     , tags : Optional (List Text)
     , before_script : Optional Script
     , script : Script
+    , coverage : Optional Text
     , services : Optional (List Service)
     , after_script : Optional Script
     , cache : Optional CacheSpec
