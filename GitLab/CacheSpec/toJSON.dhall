@@ -4,9 +4,13 @@ let Map = Prelude.Map
 
 let JSON = Prelude.JSON
 
+let When = ../When/package.dhall
+
 let CacheSpec = ./Type.dhall
 
 let CacheKey = ../CacheKey/package.dhall
+
+let CachePolicy = ../CachePolicy/package.dhall
 
 let stringsArray
     : List Text → JSON.Type
@@ -43,6 +47,20 @@ in  let CacheSpec/toJSON
                                         cs.paths
                                     )
                                 )
+                    , untracked =
+                        Optional/map Bool JSON.Type JSON.bool cs.untracked
+                    , when = 
+                        Optional/map 
+                            When.Type 
+                            JSON.Type
+                            When.toJSON
+                            cs.when
+                    , policy =
+                        Optional/map
+                            CachePolicy.Type
+                            JSON.Type
+                            CachePolicy.toJSON
+                            cs.policy
                     }
 
             in  JSON.object (dropNones Text JSON.Type obj)
