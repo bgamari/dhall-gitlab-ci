@@ -133,11 +133,19 @@ in  let Job/toJSON
                           stringsArrayJSON
                           job.after_script
                     , cache =
-                        Optional/map
-                          CacheSpec.Type
-                          JSON.Type
-                          CacheSpec.toJSON
-                          job.cache
+                        let cacheList = optionalList CacheSpec.Type job.cache
+
+                        in  if    Prelude.List.null CacheSpec.Type cacheList
+                            then  None JSON.Type
+                            else  Some
+                                    ( JSON.array
+                                        ( Prelude.List.map
+                                            CacheSpec.Type
+                                            JSON.Type
+                                            CacheSpec.toJSON
+                                            cacheList
+                                        )
+                                    )
                     , artifacts =
                         Optional/map
                           ArtifactsSpec.Type

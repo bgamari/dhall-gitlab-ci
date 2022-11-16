@@ -35,7 +35,7 @@ in  { stage : Optional Text
     , coverage : Optional Text
     , services : Optional (List Service)
     , after_script : Optional Script
-    , cache : Optional CacheSpec
+    , cache : Optional (List CacheSpec)
     , artifacts : Optional ArtifactsSpec
     , resource_group : Optional Text
     , environment : Optional Environment
