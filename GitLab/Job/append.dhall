@@ -48,7 +48,7 @@ let append
         , coverage = mergeOptionalRight Text a.coverage b.coverage
         , services = mergeOptionalList Service.Type a.services b.services
         , after_script = mergeOptionalList Text a.after_script b.after_script
-        , cache = mergeOptional CacheSpec.Type CacheSpec.append a.cache b.cache
+        , cache = mergeOptionalList CacheSpec.Type a.cache b.cache
         , artifacts =
             mergeOptional
               ArtifactsSpec.Type

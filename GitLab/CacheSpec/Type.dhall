@@ -7,6 +7,6 @@ let CacheKey = ../CacheKey/Type.dhall
 in  { key : Optional CacheKey
     , paths : List Text
     , untracked : Optional Bool
-    , when : When
+    , when : Optional When
     , policy : Optional CachePolicy
     }
