@@ -10,6 +10,8 @@ let Rule = ../Rule/package.dhall
 
 let dropNones = ../utils/dropNones.dhall
 
+let stringsArrayJSON = ../utils/stringsArrayJSON.dhall
+
 let Include/toJSON
     : Include → JSON.Type
     = λ(include : Include) →
@@ -23,7 +25,9 @@ let Include/toJSON
                       JSON.string
                       include.local
                 , file =
-                    Prelude.Optional.map Text JSON.Type JSON.string include.file
+                    if    Prelude.List.null Text include.file
+                    then  None JSON.Type
+                    else  Some (stringsArrayJSON include.file)
                 , remote =
                     Prelude.Optional.map
                       Text
