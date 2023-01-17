@@ -38,6 +38,7 @@ in    { stage = None Text
       , cache = None (List CacheSpec)
       , artifacts = None ArtifactsSpec
       , resource_group = None Text
+      , retry = None Natural
       , environment = None Environment
       , trigger = None Trigger
       , timeout = None Text

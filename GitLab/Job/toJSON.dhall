@@ -158,6 +158,8 @@ in  let Job/toJSON
                           JSON.Type
                           JSON.string
                           job.resource_group
+                    , retry =
+                        Optional/map Natural JSON.Type JSON.natural job.retry
                     , environment =
                         Optional/map
                           Environment.Type

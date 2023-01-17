@@ -38,6 +38,7 @@ in  { stage : Optional Text
     , cache : Optional (List CacheSpec)
     , artifacts : Optional ArtifactsSpec
     , resource_group : Optional Text
+    , retry : Optional Natural
     , environment : Optional Environment
     , trigger : Optional Trigger
     , timeout : Optional Text

@@ -49,6 +49,8 @@ let Defaults/toJSON
                       JSON.Type
                       CacheSpec.toJSON
                       defaults.cache
+                , retry =
+                    Optional/map Natural JSON.Type JSON.natural defaults.retry
                 }
 
         in  JSON.object (dropNones Text JSON.Type everything)

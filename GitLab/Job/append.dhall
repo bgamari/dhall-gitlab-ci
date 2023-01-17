@@ -57,6 +57,7 @@ let append
               b.artifacts
         , resource_group =
             mergeOptionalRight Text a.resource_group b.resource_group
+        , retry = mergeOptionalRight Natural a.retry b.retry
         , environment =
             mergeOptional
               Environment.Type
