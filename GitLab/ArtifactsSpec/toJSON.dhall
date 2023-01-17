@@ -6,29 +6,48 @@ let JSON = Prelude.JSON
 
 let ArtifactsSpec = ../ArtifactsSpec/Type.dhall
 
+let Reports = ../Reports/package.dhall
+
+let Duration = ../Duration/package.dhall
+
 let Optional/map = Prelude.Optional.map
 
 let dropNones = ../utils/dropNones.dhall
 
 let When/toJSON = ../When/toJSON.dhall
 
-let Duration/toJSON = ../Duration/toJSON.dhall
-
 let List/map = Prelude.List.map
+
+let Optional/map = Prelude.Optional.map
+
+let stringsArray
+    : List Text → JSON.Type
+    = λ(xs : List Text) →
+        JSON.array (Prelude.List.map Text JSON.Type JSON.string xs)
 
 in  let ArtifactsSpec/toJSON
         : ArtifactsSpec → JSON.Type
         = λ(cs : ArtifactsSpec) →
             let obj
-                : Map.Type Text JSON.Type
+                : Map.Type Text (Optional JSON.Type)
                 = toMap
-                    { when = When/toJSON cs.when
-                    , expire_in = Duration/toJSON cs.expire_in
+                    { when = Some (When/toJSON cs.when)
+                    , expire_in =
+                        Optional/map
+                          Duration.Type
+                          JSON.Type
+                          Duration.toJSON
+                          cs.expire_in
+                    , reports =
+                        Optional/map
+                          Reports.Type
+                          JSON.Type
+                          Reports.toJSON
+                          cs.reports
                     , paths =
-                        JSON.array
-                          (List/map Text JSON.Type JSON.string cs.paths)
+                        Optional/map (List Text) JSON.Type stringsArray cs.paths
                     }
 
-            in  JSON.object obj
+            in  JSON.object (dropNones Text JSON.Type obj)
 
     in  ArtifactsSpec/toJSON

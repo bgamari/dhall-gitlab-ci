@@ -16,23 +16,33 @@ let Rule = ../Rule/Type.dhall
 
 let Trigger = ../Trigger/Type.dhall
 
+let When = ../When/Type.dhall
+
+let Parallel = ../Parallel/Type.dhall
+
+let Needs = ../Needs/Type.dhall
+
 in  { stage : Optional Text
     , image : Optional Image
     , variables : Prelude.Map.Type Text Text
     , rules : Optional (List Rule)
-    , dependencies : List Text
-    , needs : List Text
+    , dependencies : Optional (List Text)
+    , needs : Optional (List Needs)
     , allow_failure : Bool
     , tags : Optional (List Text)
     , before_script : Optional Script
     , script : Script
+    , coverage : Optional Text
     , services : Optional (List Service)
     , after_script : Optional Script
-    , cache : Optional CacheSpec
+    , cache : Optional (List CacheSpec)
     , artifacts : Optional ArtifactsSpec
     , resource_group : Optional Text
+    , retry : Optional Natural
     , environment : Optional Environment
     , trigger : Optional Trigger
     , timeout : Optional Text
     , extends : List Text
+    , when : Optional When
+    , parallel : Optional Parallel
     }

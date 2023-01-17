@@ -9,4 +9,5 @@ in  { image : Optional Text
     , after_script : List Text
     , services : List Service
     , cache : Optional CacheSpec
+    , retry : Optional Natural
     }

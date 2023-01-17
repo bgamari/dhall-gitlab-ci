@@ -22,6 +22,12 @@ let Environment = ../Environment/package.dhall
 
 let Trigger = ../Trigger/package.dhall
 
+let When = ../When/package.dhall
+
+let Parallel = ../Parallel/package.dhall
+
+let Needs = ../Needs/package.dhall
+
 let dropNones = ../utils/dropNones.dhall
 
 let optionalList = ../utils/optionalList.dhall
@@ -66,13 +72,26 @@ in  let Job/toJSON
                                         )
                                     )
                     , dependencies =
-                        if    Prelude.List.null Text job.dependencies
+                        if    Prelude.Optional.null (List Text) job.dependencies
                         then  None JSON.Type
-                        else  Some (stringsArrayJSON job.dependencies)
+                        else  let dependenciesList =
+                                    optionalList Text job.dependencies
+
+                              in  Some (stringsArrayJSON dependenciesList)
                     , needs =
-                        if    Prelude.List.null Text job.needs
-                        then  None JSON.Type
-                        else  Some (stringsArrayJSON job.needs)
+                        let needsList = optionalList Needs.Type job.needs
+
+                        in  if    Prelude.List.null Needs.Type needsList
+                            then  None JSON.Type
+                            else  Some
+                                    ( JSON.array
+                                        ( Prelude.List.map
+                                            Needs.Type
+                                            JSON.Type
+                                            Needs.toJSON
+                                            needsList
+                                        )
+                                    )
                     , tags =
                         Optional/map
                           (List Text)
@@ -90,6 +109,8 @@ in  let Job/toJSON
                         if    Prelude.List.null Text job.script
                         then  None JSON.Type
                         else  Some (stringsArrayJSON job.script)
+                    , coverage =
+                        Optional/map Text JSON.Type JSON.string job.coverage
                     , services =
                         let servicesList =
                               optionalList Service.Type job.services
@@ -112,11 +133,19 @@ in  let Job/toJSON
                           stringsArrayJSON
                           job.after_script
                     , cache =
-                        Optional/map
-                          CacheSpec.Type
-                          JSON.Type
-                          CacheSpec.toJSON
-                          job.cache
+                        let cacheList = optionalList CacheSpec.Type job.cache
+
+                        in  if    Prelude.List.null CacheSpec.Type cacheList
+                            then  None JSON.Type
+                            else  Some
+                                    ( JSON.array
+                                        ( Prelude.List.map
+                                            CacheSpec.Type
+                                            JSON.Type
+                                            CacheSpec.toJSON
+                                            cacheList
+                                        )
+                                    )
                     , artifacts =
                         Optional/map
                           ArtifactsSpec.Type
@@ -129,6 +158,8 @@ in  let Job/toJSON
                           JSON.Type
                           JSON.string
                           job.resource_group
+                    , retry =
+                        Optional/map Natural JSON.Type JSON.natural job.retry
                     , environment =
                         Optional/map
                           Environment.Type
@@ -155,6 +186,14 @@ in  let Job/toJSON
                                         job.extends
                                     )
                                 )
+                    , when =
+                        Optional/map When.Type JSON.Type When.toJSON job.when
+                    , parallel =
+                        Optional/map
+                          Parallel.Type
+                          JSON.Type
+                          Parallel.toJSON
+                          job.parallel
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)

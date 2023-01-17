@@ -1,6 +1,10 @@
 let ArtifactsSpec = ./Type.dhall
 
-let mergeOptionalRight = ../utils/mergeOptionalRight.dhall
+let Reports = ../Reports/package.dhall
+
+let mergeOptional = ../utils/mergeOptional.dhall
+
+let mergeOptionalList = ../utils/mergeOptionalList.dhall
 
 let append
     : ArtifactsSpec → ArtifactsSpec → ArtifactsSpec
@@ -8,9 +12,9 @@ let append
       λ(b : ArtifactsSpec) →
         { when = b.when
         , expire_in = b.expire_in
-        , reports.junit =
-            mergeOptionalRight Text a.reports.junit b.reports.junit
-        , paths = a.paths # b.paths
+        , reports =
+            mergeOptional Reports.Type Reports.append a.reports b.reports
+        , paths = mergeOptionalList Text a.paths b.paths
         }
 
 in  append

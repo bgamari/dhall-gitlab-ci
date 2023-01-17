@@ -9,5 +9,6 @@ in    { image = None Text
       , after_script = [] : List Text
       , services = [] : List Service
       , cache = None CacheSpec
+      , retry = None Natural
       }
     : Defaults
