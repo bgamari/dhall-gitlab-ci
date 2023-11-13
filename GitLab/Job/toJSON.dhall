@@ -32,6 +32,10 @@ let Optional/map = Prelude.Optional.map
 
 let Optional/toList = Prelude.Optional.toList
 
+let Inherit = ../Inherit/package.dhall
+
+let Inherit/toJSON = Inherit.toJSON
+
 in  let Job/toJSON
         : Job → JSON.Type
         = λ(job : Job) →
@@ -155,6 +159,8 @@ in  let Job/toJSON
                                         job.extends
                                     )
                                 )
+                    , inherit =
+                        Optional/map Inherit.Type JSON.Type Inherit/toJSON job.inherit
                     }
 
             in  JSON.object (dropNones Text JSON.Type everything)
