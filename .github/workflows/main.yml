@@ -17,3 +17,4 @@ jobs:
       - uses: dhall-lang/setup-dhall@v4
       - run: dhall text --file examples/single-job.dhall
       - run: dhall text --file examples/multiple-jobs.dhall
+      - run: dhall text --file examples/inehrit-examples.dhall
