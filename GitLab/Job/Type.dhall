@@ -16,6 +16,8 @@ let Rule = ../Rule/Type.dhall
 
 let Trigger = ../Trigger/Type.dhall
 
+let Inherit = ../Inherit/package.dhall
+
 in  { stage : Optional Text
     , image : Optional Image
     , variables : Prelude.Map.Type Text Text
@@ -34,4 +36,6 @@ in  { stage : Optional Text
     , environment : Optional Environment
     , trigger : Optional Trigger
     , timeout : Optional Text
+    , extends : List Text
+    , inherit : Optional Inherit.Type
     }

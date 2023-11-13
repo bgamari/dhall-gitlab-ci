@@ -16,6 +16,8 @@ let Environment = ../Environment/Type.dhall
 
 let Trigger = ../Trigger/Type.dhall
 
+let Inherit = ../Inherit/package.dhall
+
 in    { stage = None Text
       , image = None Image
       , variables = Prelude.Map.empty Text Text
@@ -34,5 +36,7 @@ in    { stage = None Text
       , environment = None Environment
       , trigger = None Trigger
       , timeout = None Text
+      , extends = [] : List Text
+      , inherit = None Inherit.Type
       }
     : ./Type.dhall
